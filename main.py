@@ -14,14 +14,14 @@ pastel = (204, 229, 255)
 black = (0, 0, 0)
 gray = (200, 200, 200)
 
-
+#import font 
 font = pygame.font.Font(None, 36)
 
 
 expression = ""
 result = ""
 
-
+#main code loop KEYDOWN and MOUSEBUTTONDOWN are used to get the input from the user and when "=" is pressed the expression is evaluated and the result is displayed
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -56,7 +56,7 @@ while True:
                             expression += button[0]
 
 
-    
+    #sreen color 
     screen.fill(pastel)
 
     
@@ -66,10 +66,11 @@ while True:
     screen.blit(expression_text, (20, 20))
     screen.blit(result_text, (20, 60))
 
-    
+    #buttons radius and margin 
     button_radius = 30
     button_margin = 10
 
+    #buttons coordinates (x , y) and text
     buttons = [
         ("7", 70, 170), ("8", 170, 170), ("9", 270, 170), ("/", 370, 170),
         ("4", 70, 270), ("5", 170, 270), ("6", 270, 270), ("*", 370, 270),
@@ -77,14 +78,15 @@ while True:
         ("0", 70, 470), (".", 170, 470), ("=", 270, 470), ("+", 370, 470),
     ]
 
+    #draw buttons
     for button in buttons:
         pygame.draw.circle(screen, gray, (button[1] + button_radius, button[2] + button_radius), button_radius)
         button_text = font.render(button[0], True, black)
         text_rect = button_text.get_rect(center=(button[1] + button_radius, button[2] + button_radius))
         screen.blit(button_text, text_rect)
 
-    
+    #update display
     pygame.display.flip()
 
-    
+    #set fps
     pygame.time.Clock().tick(30)
